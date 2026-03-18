@@ -1,9 +1,9 @@
+import * as I from "csgogsi";
 import React, { useEffect, useState } from 'react';
-import type { ExtendedCSGO, ExtendedTeam, Match } from '../../types';
-import "./layout.scss";
-import * as I from "csgogsi"
-import { TeamBanner } from '../TeamBanner/TeamBanner';
 import eventEmitter from '../../events/EventEmitter';
+import type { ExtendedCSGO, Match } from '../../types';
+import { TeamBanner } from '../TeamBanner/TeamBanner';
+import "./layout.scss";
 
 interface Props {
     game: ExtendedCSGO | null,
@@ -31,9 +31,6 @@ const Layout: React.FC<Props> = ({ game, match }) => {
             setTimeout(() => {
                 setShowWinner(false);
             }, 5000);
-
-
-
         });
 
         return () => {

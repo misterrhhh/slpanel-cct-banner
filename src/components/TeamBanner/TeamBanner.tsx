@@ -1,11 +1,8 @@
-import { useEffect, useState } from "react"
 import type { ExtendedCSGO, ExtendedTeam } from "../../types"
-import { Win } from "../Win/Win"
-import "./teambanner.scss"
-import * as I from "csgogsi"
-import eventEmitter from "../../events/EventEmitter"
 import { Score } from "../Score/Score"
 import { Tactical } from "../Timeouts/Tactical"
+import { Win } from "../Win/Win"
+import "./teambanner.scss"
 
 interface Props {
     team: ExtendedTeam,
