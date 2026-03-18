@@ -1,0 +1,52 @@
+import React, { useEffect, useState } from 'react';
+import type { ExtendedCSGO, ExtendedTeam, Match } from '../../types';
+import "./layout.scss";
+import * as I from "csgogsi"
+import { TeamBanner } from '../TeamBanner/TeamBanner';
+import eventEmitter from '../../events/EventEmitter';
+
+interface Props {
+    game: ExtendedCSGO | null,
+    match: Match | null
+}
+
+const Layout: React.FC<Props> = ({ game, match }) => {
+
+    if (!match || !game) return null;
+
+    const left = game.map.team_ct.physicalSide === "left" ? game.map.team_ct : game.map.team_t
+    const right = game.map.team_ct.physicalSide === "right" ? game.map.team_ct : game.map.team_t
+
+  
+
+    const [winnerSide, setWinnerSide] = useState<"CT" | "T">("CT")
+    const [showWinner, setShowWinner] = useState(false)
+
+    useEffect(() => {
+        eventEmitter.on("roundEnd", (result: I.Score) => {
+            console.log(result)
+            setWinnerSide(result.winner.side)
+            setShowWinner(true)
+
+            setTimeout(() => {
+                setShowWinner(false);
+            }, 5000);
+
+
+
+        });
+
+        return () => {
+            eventEmitter.off("roundEnd", () => { });
+        };
+    }, []);
+
+    return (
+        <div className="layout">
+            <TeamBanner team={left} game={game} showWinner={showWinner && winnerSide === left.side} />
+            <TeamBanner team={right} game={game} showWinner={showWinner && winnerSide === right.side} />
+        </div>
+    )
+}
+
+export default Layout;

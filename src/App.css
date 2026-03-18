@@ -1,0 +1,22 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+
+.App {
+  font-family: "Jost", sans-serif;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+}
+
+
+:root {
+  --color-panel-primary: 0, 17, 99;
+  --color-t: 255, 203, 0;
+  --color-ct: 92, 224, 255;
+
+}

@@ -1,0 +1,29 @@
+.banner {
+    width: 2048px;
+    height: 256px;
+    background-image: url("./../../assets/led/LED_BG.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    flex-direction: row;
+
+    .banner-icon {
+        width: 256px;
+        height: 256px;
+        background-image: url("./../../assets/logo.png");
+        background-position: center 25px;
+        background-size: 80%;
+        background-repeat: no-repeat;
+        filter: drop-shadow(0 0 5px white);
+    }
+
+    .banner-content {
+        position: relative;
+        width: 1536px;
+        height: 256px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

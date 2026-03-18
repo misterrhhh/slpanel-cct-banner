@@ -1,0 +1,287 @@
+.players-list {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    top: 220px;
+    filter: drop-shadow(3px 3px 10px black);
+
+    &.CT {
+
+        .player-health-bar,
+        .player-health-bar-secondary {
+            background-color: rgba(var(--color-ct), 1);
+        }
+
+        .player-health .hp {
+            color: rgba(var(--color-ct), 1);
+        }
+    }
+
+    &.T {
+
+        .player-health-bar,
+        .player-health-bar-secondary {
+            background-color: rgba(var(--color-t), 1);
+        }
+
+        .player-health .hp {
+            color: rgba(var(--color-t), 1);
+        }
+    }
+
+    &.left {
+        left: 120px;
+
+
+        .player {
+            clip-path: polygon(0 0, 100% 2.3%, 100% 100%, 0 97.4%);
+            background-image: url("./../../assets/players-left.png");
+
+            .player-health-frame,
+            .player-health-frame-secondary,
+            .player-avatar {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 97.4%);
+            }
+
+            .player-health-bar-secondary {
+                right: 0;
+            }
+
+        }
+    }
+
+    &.right {
+        right: 120px;
+
+        .player {
+            clip-path: polygon(0 2.3%, 100% 0, 100% 97.4%, 0 100%);
+            background-image: url("./../../assets/players-right.png");
+
+            .player-health-frame,
+            .player-health-frame-secondary,
+            .player-avatar {
+                clip-path: polygon(0 0, 100% 0, 100% 97.4%, 0 100%);
+            }
+
+            .player-health-bar-secondary {
+                left: 0;
+            }
+
+            .player-weapon {
+                transform: translateX(-50%) scale(-1, 1)
+            }
+        }
+    }
+
+    .player {
+        position: relative;
+        width: 130px;
+        height: 1060px;
+        background: rgba(var(--color-panel-primary), 1);
+        
+
+        &.dead {
+
+            background-image: none;
+
+            .player-avatar {
+                filter: grayscale(100%);
+            }
+
+            .player-skull,
+            .player-dead {
+                opacity: 1;
+                transition-delay: 400ms;
+            }
+
+            .player-health {
+                opacity: 0;
+            }
+
+            .player-name {
+                opacity: .5;
+            }
+        }
+
+        &.observed {
+
+        }
+
+        .player-health-frame {
+            position: absolute;
+            width: 100%;
+            height: 932px;
+            bottom: 128px;
+            overflow: hidden;
+
+            .player-health-bar {
+                position: absolute;
+                inset: 0;
+                z-index: 2;
+                transition: clip-path 300ms;
+                overflow: hidden;
+            }
+
+            .player-health-bar-delayed {
+                position: absolute;
+                background-color: red;
+                inset: 0;
+                z-index: 1;
+                transition: clip-path 300ms;
+                transition-delay: 1000ms;
+            }
+        }
+
+        .player-avatar {
+            position: absolute;
+            z-index: 3;
+            bottom: 128px;
+            width: 100%;
+            height: 932px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            transition: all 500ms;
+
+            img {
+                width: 300%;
+                //-webkit-mask-image: linear-gradient(180deg, black 90%, transparent 100%);
+            }
+
+        }
+
+        .player-fog {
+            position: absolute;
+            z-index: 4;
+            height: 320px;
+            width: 100%;
+            background: linear-gradient(to top, rgba(var(--color-panel-primary), 1) 50%, transparent);
+            bottom: 0;
+        }
+
+        .player-health-frame-secondary {
+            position: absolute;
+            z-index: 5;
+            width: 100%;
+            height: 932px;
+            bottom: 128px;
+            overflow: hidden;
+
+            .player-health-bar-secondary {
+                position: absolute;
+                height: 100%;
+                width: 10px;
+                z-index: 4;
+                transition: clip-path 300ms;
+            }
+
+            .player-health-bar-dummy {
+                position: absolute;
+                inset: 0;
+                z-index: 2;
+                transition: clip-path 300ms;
+                overflow: hidden;
+            }
+
+
+        }
+
+        .player-weapon {
+            position: absolute;
+            z-index: 6;
+            bottom: 55px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 110px;
+            height: 50px;
+
+            transition: all 500ms;
+
+            * {
+                max-height: 100%;
+                width: 100%;
+            }
+        }
+
+        .player-name-wrapper {
+            position: absolute;
+            z-index: 6;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            top: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 390px;
+
+            .player-name {
+                display: flex;
+                justify-content: flex-end;
+                width: 100%;
+                position: absolute;
+                transform: rotate(-90deg);
+                font-size: 45px;
+                font-weight: 800;
+                text-transform: uppercase;
+                color: white;
+                text-shadow: 0 0 10px black;
+                transition: opacity 400ms;
+            }
+        }
+
+        .player-health {
+            position: absolute;
+            z-index: 6;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            bottom: 150px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-weight: 800;
+            font-size: 50px;
+            line-height: 0.95;
+            text-shadow: 0 0 4px black;
+            transition: opacity 400ms;
+            color: white
+
+
+        }
+
+        .player-skull {
+            position: absolute;
+            z-index: 6;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 50px;
+            width: 60px;
+            aspect-ratio: 1;
+            background-color: white;
+            mask-image: url("./../../assets/iconography/skull.png");
+            mask-size: 100%;
+            mask-position: center;
+            mask-repeat: no-repeat;
+            transition: opacity 400ms;
+            transition-delay: 0ms;
+            opacity: 0;
+        }
+
+        .player-dead {
+            position: absolute;
+            z-index: 6;
+            left: 50%;
+            transform: translateX(-50%) rotate(-90deg);
+            bottom: 180px;
+            font-weight: 800;
+            color: #DD0740;
+            font-size: 40px;
+            transition: opacity 400ms;
+            transition-delay: 0ms;
+            opacity: 0;
+            text-shadow: 0 0 4px black;
+        }
+    }
+}

@@ -1,0 +1,121 @@
+.win {
+    position: absolute;
+    width: 1055px;
+    height: 256px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: all 500ms;
+
+    &.show {
+        transition-delay: 500ms;
+        transform: translateX(-50%) scale(1);
+
+        .win-logo {
+            transition-delay: 1000ms;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .win-name {
+            transition-delay: 1000ms;
+            transform: translateY(-50%) translateX(0);
+            opacity: 1;
+        }
+
+        .win-desc {
+            transition-delay: 1000ms;
+            transform: translateY(-50%) translateX(0);
+            opacity: 1;
+        }
+    }
+
+    &.hide {
+        transition-delay: 500ms;
+        transform: translateX(-50%) scale(0);
+
+        .win-logo {
+            transition-delay: 0ms;
+            transform: translate(-50%, -50%) scale(0);
+        }
+
+        .win-name {
+            transition-delay: 0ms;
+            transform: translateY(-50%) translateX(100px);
+            opacity: 0;
+        }
+
+        .win-desc {
+            transition-delay: 0ms;
+            transform: translateY(-50%) translateX(-100px);
+            opacity: 0;
+        }
+    }
+
+    &.CT {
+        background-image: url("./../../assets/win-ct.png");
+    }
+
+    &.T {
+        background-image: url("./../../assets/win-t.png");
+    }
+
+    .win-logo {
+        position: absolute;
+        z-index: 2;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 266px;
+        height: 200px;
+        background-color: rgba(255, 255, 255, 0.1);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 500ms;
+
+        img {
+            max-height: 100%;
+            max-width: 100%;
+        }
+    }
+
+    .win-name {
+        position: absolute;
+        z-index: 1;
+        width: 500px;
+        height: 80px;
+        top: 50%;
+        transform: translateY(-50%);
+        left: -20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-weight: 900;
+        text-transform: uppercase;
+        font-size: 60px;
+        white-space: wrap;
+        transition: all 500ms;
+    }
+
+    .win-desc {
+        position: absolute;
+        z-index: 1;
+        width: 500px;
+        height: 80px;
+        top: 50%;
+        transform: translateY(-50%);
+        right: -20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-weight: 900;
+        text-transform: uppercase;
+        font-size: 60px;
+        white-space: wrap;
+        transition: all 500ms;
+    }
+}

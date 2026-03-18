@@ -1,0 +1,170 @@
+.tactical {
+    position: absolute;
+    width: 1070px;
+    height: 256px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    filter: drop-shadow(0 0 10px black);
+    transition: all 500ms;
+
+    &.show {
+        transition-delay: 500ms;
+        transform: translateX(-50%) scale(1);
+    }
+
+    &.hide {
+        transition-delay: 0ms;
+        transform: translateX(-50%) scale(0);
+    }
+
+    &.left {
+        .tactical-logo {
+            right: 0;
+        }
+
+        .tactical-name {
+            left: 270px;
+        }
+
+        .tactical-boxes {
+            flex-direction: row;
+            left: 35px;
+
+            .tactical-box {
+                background-image: url("./../../assets/tac-box-empty-left.png");
+
+                &.full {
+                    background-image: url("./../../assets/tac-box-full-left.png");
+                }
+            }
+        }
+
+        &.CT {
+            background-image: url("./../../assets/tac-ct-left.png");
+        }
+
+        &.T {
+            background-image: url("./../../assets/tac-t-left.png");
+        }
+    }
+
+    &.right {
+
+        .tactical-logo {
+            left: 0;
+        }
+
+        .tactical-name {
+            right: 270px;
+        }
+
+        .tactical-boxes {
+            flex-direction: row-reverse;
+            right: 35px;
+
+            .tactical-box {
+                background-image: url("./../../assets/tac-box-empty-right.png");
+
+                &.full {
+                    background-image: url("./../../assets/tac-box-full-right.png");
+                }
+            }
+        }
+
+        &.CT {
+            background-image: url("./../../assets/tac-ct-right.png");
+        }
+
+        &.T {
+            background-image: url("./../../assets/tac-t-right.png");
+        }
+    }
+
+    .tactical-logo {
+        position: absolute;
+        width: 292px;
+        height: 256px;
+        background-color: rgba(255, 255, 255, 0.1);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+
+        img {
+            max-height: 100%;
+            max-width: 100%;
+        }
+    }
+
+    .tactical-name {
+        position: absolute;
+        width: 500px;
+        height: 80px;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        white-space: wrap;
+        color: white;
+        font-weight: 900;
+        font-size: 50px;
+    }
+
+    .tactical-boxes {
+        position: absolute;
+        width: 190px;
+        height: 54px;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 3px;
+
+        .tactical-box {
+            width: 63px;
+            height: 54px;
+
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+
+            &.full {
+                background-image: url("./../../assets/tac-box-full.png");
+            }
+        }
+    }
+}
+
+.technical {
+    position: absolute;
+    width: 1200px;
+    height: 200px;
+    top: 1130px;
+    left: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: 900;
+    font-size: 50px;
+    transform: translateX(-50%);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url("./../../assets/tec.png");
+    filter: drop-shadow(0 0 10px black);
+    transition: all 500ms;
+
+    &.show {
+        opacity: 1;
+    }
+
+    &.hide {
+        opacity: 0;
+    }
+}
