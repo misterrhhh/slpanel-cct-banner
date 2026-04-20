@@ -17,7 +17,9 @@ const Layout: React.FC<Props> = ({ game, match }) => {
     const left = game.map.team_ct.physicalSide === "left" ? game.map.team_ct : game.map.team_t
     const right = game.map.team_ct.physicalSide === "right" ? game.map.team_ct : game.map.team_t
 
-  
+  const amountOfMaps = (match && Math.floor(Number(match.mode.substr(-1)) / 2) + 1) || 0;
+
+  console.log("Amount of maps:", amountOfMaps);
 
     const [winnerSide, setWinnerSide] = useState<"CT" | "T">("CT")
     const [showWinner, setShowWinner] = useState(false)
@@ -40,8 +42,8 @@ const Layout: React.FC<Props> = ({ game, match }) => {
 
     return (
         <div className="layout">
-            <TeamBanner team={left} game={game} showWinner={showWinner && winnerSide === left.side} />
-            <TeamBanner team={right} game={game} showWinner={showWinner && winnerSide === right.side} />
+            <TeamBanner team={left} game={game} showWinner={showWinner && winnerSide === left.side} amountOfMaps={amountOfMaps} />
+            <TeamBanner team={right} game={game} showWinner={showWinner && winnerSide === right.side} amountOfMaps={amountOfMaps} />
         </div>
     )
 }

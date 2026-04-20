@@ -1,10 +1,10 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
-
+@import "./fonts/Morganite/morganite.css";
 
 
 .App {
-  font-family: "Jost", sans-serif;
+  font-family: "Morganite", sans-serif;
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -15,8 +15,7 @@
 
 
 :root {
-  --color-panel-primary: 0, 17, 99;
-  --color-t: 255, 203, 0;
-  --color-ct: 92, 224, 255;
-
+  --color-panel-primary: 0, 0, 0;
+  --color-t: 247, 171, 7;
+  --color-ct: 1, 169, 231;
 }

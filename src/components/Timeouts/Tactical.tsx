@@ -1,30 +1,48 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import type { ExtendedTeam } from '../../types';
 import "./timeouts.scss";
 
-import DefaultLogoCT from "./../../assets/iconography/ct.png";
-import DefaultLogoT from "./../../assets/iconography/t.png";
 
 interface Props {
     show: boolean
-    team: ExtendedTeam,
+    teamTimeout: ExtendedTeam,
+    time: number
 }
 
-const TOTAL_TIMEOUTS = 3
 
-export const Tactical: React.FC<Props> = ({ show, team }) => {
+export const Tactical: React.FC<Props> = ({ show, teamTimeout, time }) => {
 
+    const [displayTime, setDisplayTime] = useState(0)
+    const [maxTime, setMaxTime] = useState(0)
+    const [team, setTeam] = useState<ExtendedTeam>()
 
+    useEffect(() => {
+        if (time && show) {
+            setDisplayTime(time)
+
+            if (time > maxTime) {
+                setMaxTime(time)
+            }
+        }
+    }, [time])
+
+    useEffect(() => {
+        if (show && teamTimeout) {
+            setTeam(teamTimeout)
+        }
+    }, [teamTimeout])
+
+    let progress = (100 * displayTime) / maxTime
+
+    let styleLeft = `polygon(0% 0, ${progress}% 0, ${progress}% 100%, 0% 100%)`
+    let styleRight = `polygon(${100 - progress}% 0, 100% 0, 100% 100%, ${100 - progress}% 100%)`
 
     return (
-        <div className={`tactical ${team.side} ${team.physicalSide} ${show ? "show" : "hide"}`}>
-            <div className="tactical-logo"><img src={team.logo ? team.logo : team.side === "CT" ? DefaultLogoCT : DefaultLogoT} /></div>
-            <div className="tactical-name">PAUSA TÁTICA</div>
-            <div className="tactical-boxes">
-                {new Array(TOTAL_TIMEOUTS).fill(0).map((_, i) => (
-                    <div key={i} className={`tactical-box ${team.timeouts_remaining > i ? "full" : ""} `} />
-                ))}
-            </div>
+        <div className={`tactical ${team?.side} ${team?.physicalSide} ${show ? "show" : "hide"}`}>
+            <div className="tactical-background"></div>
+            <div className="tactical-bar" style={{ clipPath: team?.physicalSide === "left" ? styleLeft : styleRight }}></div>
+            
+            <div className="tactical-time">{displayTime.toFixed(0)}</div>
         </div>
     )
 }

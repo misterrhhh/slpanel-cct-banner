@@ -9,7 +9,7 @@ export default defineConfig({
   // work when the build is served from a subfolder.
   base: './',
   build: {
-    outDir: 'slpanel_movemind_teamfront',
+    outDir: 'cct-banner',
     assetsDir: 'assets',
   },
 })

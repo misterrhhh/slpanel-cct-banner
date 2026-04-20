@@ -1,120 +1,66 @@
 .win {
     position: absolute;
-    width: 1055px;
-    height: 256px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-position: center;
+    z-index: 5;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     transition: all 500ms;
 
     &.show {
-        transition-delay: 500ms;
-        transform: translateX(-50%) scale(1);
 
-        .win-logo {
-            transition-delay: 1000ms;
-            transform: translate(-50%, -50%) scale(1);
+        .win-background {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
         }
 
-        .win-name {
-            transition-delay: 1000ms;
-            transform: translateY(-50%) translateX(0);
-            opacity: 1;
-        }
-
-        .win-desc {
-            transition-delay: 1000ms;
-            transform: translateY(-50%) translateX(0);
-            opacity: 1;
+        .win-text {
+            transition-delay: 500ms;
+            transform: translateY(0px);
+            letter-spacing: 40px;
         }
     }
 
     &.hide {
-        transition-delay: 500ms;
-        transform: translateX(-50%) scale(0);
 
-        .win-logo {
-            transition-delay: 0ms;
-            transform: translate(-50%, -50%) scale(0);
+        .win-background {
+            transition-delay: 500ms;
+            clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
         }
 
-        .win-name {
-            transition-delay: 0ms;
-            transform: translateY(-50%) translateX(100px);
-            opacity: 0;
-        }
-
-        .win-desc {
-            transition-delay: 0ms;
-            transform: translateY(-50%) translateX(-100px);
-            opacity: 0;
+        .win-text {
+            transform: translateY(400px);
+            letter-spacing: 0px;
         }
     }
 
     &.CT {
-        background-image: url("./../../assets/win-ct.png");
-    }
-
-    &.T {
-        background-image: url("./../../assets/win-t.png");
-    }
-
-    .win-logo {
-        position: absolute;
-        z-index: 2;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        width: 266px;
-        height: 200px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        transition: all 500ms;
-
-        img {
-            max-height: 100%;
-            max-width: 100%;
+        .win-background {
+            background-color: rgba(var(--color-ct), 1);
         }
     }
 
-    .win-name {
-        position: absolute;
-        z-index: 1;
-        width: 500px;
-        height: 80px;
-        top: 50%;
-        transform: translateY(-50%);
-        left: -20px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: white;
-        font-weight: 900;
-        text-transform: uppercase;
-        font-size: 60px;
-        white-space: wrap;
-        transition: all 500ms;
+    &.T {
+        .win-background {
+            background-color: rgba(var(--color-t), 1);
+        }
     }
 
-    .win-desc {
+    .win-background {
         position: absolute;
         z-index: 1;
-        width: 500px;
-        height: 80px;
-        top: 50%;
-        transform: translateY(-50%);
-        right: -20px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: white;
-        font-weight: 900;
-        text-transform: uppercase;
-        font-size: 60px;
-        white-space: wrap;
-        transition: all 500ms;
+        inset: 0;
+        transition: clip-path 500ms ease;
     }
+
+    .win-text {
+        position: absolute;
+        z-index: 2;
+        color: white;
+        font-size: 350px;
+        text-transform: uppercase;
+        text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.45);
+        transition: transform 400ms, letter-spacing 4000ms;
+    }
+
+
 }

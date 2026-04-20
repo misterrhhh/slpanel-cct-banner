@@ -1,142 +1,70 @@
 .tactical {
     position: absolute;
-    width: 1070px;
-    height: 256px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-position: center;
-    filter: drop-shadow(0 0 10px black);
-    transition: all 500ms;
+    inset: 0;
+    z-index: 6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 500ms ease;
+    background-color: rgba(0, 0, 0, 0.4);
 
     &.show {
-        transition-delay: 500ms;
-        transform: translateX(-50%) scale(1);
+        backdrop-filter: blur(15px);
+        //clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+        opacity: 1;
+
+        .tactical-time {
+            transition-delay: 500ms;
+            opacity: 1;
+        }
     }
 
     &.hide {
-        transition-delay: 0ms;
-        transform: translateX(-50%) scale(0);
-    }
+        transition-delay: 500ms;
+        backdrop-filter: blur(0px);
+        //clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
+        opacity: 0;
 
-    &.left {
-        .tactical-logo {
-            right: 0;
-        }
-
-        .tactical-name {
-            left: 270px;
-        }
-
-        .tactical-boxes {
-            flex-direction: row;
-            left: 35px;
-
-            .tactical-box {
-                background-image: url("./../../assets/tac-box-empty-left.png");
-
-                &.full {
-                    background-image: url("./../../assets/tac-box-full-left.png");
-                }
-            }
-        }
-
-        &.CT {
-            background-image: url("./../../assets/tac-ct-left.png");
-        }
-
-        &.T {
-            background-image: url("./../../assets/tac-t-left.png");
+        .tactical-time {
+            transition-delay: 0ms;
+            opacity: 0;
         }
     }
 
-    &.right {
+    &.left {}
 
-        .tactical-logo {
-            left: 0;
-        }
+    &.right {}
 
-        .tactical-name {
-            right: 270px;
-        }
-
-        .tactical-boxes {
-            flex-direction: row-reverse;
-            right: 35px;
-
-            .tactical-box {
-                background-image: url("./../../assets/tac-box-empty-right.png");
-
-                &.full {
-                    background-image: url("./../../assets/tac-box-full-right.png");
-                }
-            }
-        }
-
-        &.CT {
-            background-image: url("./../../assets/tac-ct-right.png");
-        }
-
-        &.T {
-            background-image: url("./../../assets/tac-t-right.png");
+    &.CT {
+        .tactical-bar {
+            background-color: rgba(var(--color-ct), 1);
         }
     }
 
-    .tactical-logo {
+    &.T {
+        .tactical-bar {
+            background-color: rgba(var(--color-t), 1);
+        }
+    }
+
+
+
+    .tactical-bar {
         position: absolute;
-        width: 292px;
-        height: 256px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        overflow: hidden;
-
-        img {
-            max-height: 100%;
-            max-width: 100%;
-        }
+        z-index: 2;
+        inset: 0;
     }
 
-    .tactical-name {
+    .tactical-time {
         position: absolute;
-        width: 500px;
-        height: 80px;
-        top: 50%;
-        transform: translateY(-50%);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        white-space: wrap;
+        z-index: 3;
+        font-size: 400px;
         color: white;
-        font-weight: 900;
-        font-size: 50px;
+        text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+        letter-spacing: 15px;
+        transition: opacity 500ms ease;
     }
 
-    .tactical-boxes {
-        position: absolute;
-        width: 190px;
-        height: 54px;
-        top: 50%;
-        transform: translateY(-50%);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 3px;
-
-        .tactical-box {
-            width: 63px;
-            height: 54px;
-
-            background-size: contain;
-            background-position: center;
-            background-repeat: no-repeat;
-
-            &.full {
-                background-image: url("./../../assets/tac-box-full.png");
-            }
-        }
-    }
 }
 
 .technical {
