@@ -6,16 +6,42 @@ import { io } from 'socket.io-client';
 import eventEmitter from './events/EventEmitter';
 import * as I from "csgogsi"
 
-// Allow overriding the socket server via env (see .env.local). Falls back to localhost for dev.
-const SERVER_IP = import.meta.env.VITE_SOCKET_SERVER_IP ?? 'localhost';
-const SOCKET_SERVER_URL = `http://${SERVER_IP}:1906`;
-//const SOCKET_SERVER_URL = `http://localhost:1906`;
+type StageLinkRuntime = {
+  origin: string;
+  socketOrigin: string;
+  socketPath: string;
+};
+
+declare global {
+  interface Window {
+    __STAGELINK__?: {
+      origin: string;
+      socketOrigin: string;
+      socketPath: string;
+    };
+  }
+}
+
+const getStageLinkRuntime = (): StageLinkRuntime => {
+  if (window.__STAGELINK__?.socketOrigin) {
+    return { ...window.__STAGELINK__ };
+  }
+  const devOrigin = 'http://localhost:1906';
+  return {
+    origin: devOrigin,
+    socketOrigin: devOrigin,
+    socketPath: '/socket.io',
+  };
+};
+
+const runtime = getStageLinkRuntime();
 
 const replaceHostWithServerIp = (url: string | null | undefined): string | null => {
   if (!url) return url ?? null;
   try {
     const parsed = new URL(url);
-    parsed.hostname = SERVER_IP;
+    const runtimeHost = new URL(runtime.origin).hostname;
+    parsed.hostname = runtimeHost;
     return parsed.toString();
   } catch {
     return url;
@@ -55,8 +81,8 @@ const normalizeMatchAssets = (matchData: Match): Match => ({
   teamTwo: normalizeMatchTeamAssets(matchData.teamTwo),
 });
 
-// Create the socket without auto-connecting; connection is managed in the effect.
-export const socket = io(SOCKET_SERVER_URL, {
+export const socket = io(runtime.socketOrigin, {
+  path: runtime.socketPath,
   transports: ['websocket'],
   autoConnect: false,
 });
@@ -101,7 +127,6 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
-      {/* Show a simple placeholder while waiting for socket data */}
       {(!game || !match) ? (
         <div className="App-loading">Waiting for match data…</div>
       ) : (
