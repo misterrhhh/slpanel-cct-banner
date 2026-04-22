@@ -32,7 +32,10 @@ export const Tactical: React.FC<Props> = ({ show, teamTimeout, time }) => {
         }
     }, [teamTimeout])
 
+    
+
     let progress = (100 * displayTime) / maxTime
+
 
     let styleLeft = `polygon(0% 0, ${progress}% 0, ${progress}% 100%, 0% 100%)`
     let styleRight = `polygon(${100 - progress}% 0, 100% 0, 100% 100%, ${100 - progress}% 100%)`
