@@ -43,7 +43,7 @@ export const TeamBanner: React.FC<Props> = ({ team, game, showWinner, amountOfMa
                 <div className="banner-name">{team.name}</div>
                 <div className="banner-bo">
                     {new Array(amountOfMaps).fill(0).map((_, i) => (
-						<div key={i} className={`box ${team.matches_won_this_series > i ? "win" : ""} `} />
+						<div key={i} className={`box ${team.matches_won_this_series > i ? "active" : ""} `} />
 					))}
                 </div>
             </div>

@@ -181,7 +181,7 @@
                 width: 100%;
                 background-color: rgba(255, 255, 255, 0.15);
 
-                &.win {
+                &.active {
                     background-color: rgba(255, 255, 255, 1);
                     filter: drop-shadow(0 0 10px white)
                 }
